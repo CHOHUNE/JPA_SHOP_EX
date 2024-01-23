@@ -2,11 +2,14 @@ package jpabook.japshop.domain;
 
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
 @Entity
 @Data
+@NoArgsConstructor(access = AccessLevel.PROTECTED )
 public class OrderItem {
 
     @Id
@@ -29,4 +32,28 @@ public class OrderItem {
 
     public void add(OrderItem orderItems) {
     }
+
+//    비즈니스 로직
+    public void cancel() {
+
+        getItem().addStock(count);
+    }
+
+//    조회 로직
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
+    }
+
+//    생성 메서드
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setOrderPrice(orderPrice);
+        orderItem.setCount(count);
+        orderItem.setItem(item);
+
+        item.removeStock(count);
+        return orderItem;
+    }
+
+
 }
