@@ -3,7 +3,9 @@ package jpabook.japshop.service;
 import jakarta.persistence.EntityManager;
 import jpabook.japshop.domain.*;
 import jpabook.japshop.domain.item.Book;
+import jpabook.japshop.exception.NotEnoughStockException;
 import jpabook.japshop.repository.OrderRepository;
+import org.aspectj.weaver.ast.Or;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -64,10 +66,34 @@ public class OrderServiceTest {
     @Test
     public void 주문취소()throws Exception {
 
+        Member member = createMember();
+        Book item = createBook("시골 JPA", 10000, 10);
+
+        int orderCount =2;
+        Long orderId = orderService.order(member.getId(), item.getId(), orderCount);
+
+        orderService.cancelOrder(orderId);
+
+        Order getOrder = orderRepository.findOne(orderId);
+
+        assertEquals("주문 취소시 상태는 CANCEL 이다",OrderStatus.CANCEL,getOrder.getStatus());
+        assertEquals("주문이 취소된 상품은 그만큼 재고가 증가 해야 한다.", 10, item.getStockQuantity());
+
+
     }
 
-    @Test
+    @Test(expected = NotEnoughStockException.class)
     public void 상품주문_재고수향초과()throws Exception {
+
+        Member member = createMember();
+        Item item = createBook("시골 JPA", 10000, 10);
+
+        int orderCount =10;
+        //when
+
+        orderService.order(member.getId(),  item.getId(), orderCount);
+        fail("재고 수량 부족 예외가 발생해야 한다");
+
 
     }
 }
