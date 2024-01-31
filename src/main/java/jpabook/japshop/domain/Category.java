@@ -1,7 +1,7 @@
-package jpabook.japshop.domain.item;
+package jpabook.japshop.domain;
 
 import jakarta.persistence.*;
-import jpabook.japshop.domain.Item;
+import jpabook.japshop.domain.item.Item;
 import lombok.Data;
 
 import java.util.ArrayList;

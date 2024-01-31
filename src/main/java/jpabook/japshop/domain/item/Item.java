@@ -1,8 +1,8 @@
-package jpabook.japshop.domain;
+package jpabook.japshop.domain.item;
 
 
 import jakarta.persistence.*;
-import jpabook.japshop.domain.item.Category;
+import jpabook.japshop.domain.Category;
 import jpabook.japshop.exception.NotEnoughStockException;
 import lombok.Data;
 

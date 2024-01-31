@@ -2,10 +2,10 @@ package jpabook.japshop.domain;
 
 
 import jakarta.persistence.*;
+import jpabook.japshop.domain.item.Item;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
 @Entity
 @Data
