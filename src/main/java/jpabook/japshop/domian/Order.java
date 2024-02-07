@@ -21,16 +21,16 @@ public class Order {
     @Column(name="ORDER_ID")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="MEMBER_ID")
     private Member member;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="DELIVERY_ID")
     private Delivery delivery;
 
-    @OneToMany(mappedBy = "order")
-    @JoinColumn(name = "ORDER_ITEM_ID")
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+//    @JoinColumn(name = "ORDER_ITEM_ID")
     private List<OrderItem> orderItems = new ArrayList<>(); //빈 배열을 넣어야 한다. 변수명은 s를 붙여서 복수형
 
     private LocalDateTime orderDate;
@@ -38,4 +38,20 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+    //    연관관계 편의 메서드
+    public void setMember(Member member) {
+        this.member = member;
+        member.getOrders().add(this);
+    }
+
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+        delivery.setOrder(this);
+
+    }
 }

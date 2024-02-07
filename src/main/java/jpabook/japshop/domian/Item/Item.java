@@ -22,9 +22,9 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
-    @ManyToMany
-    @JoinColumn(name="CATEGORY_ID")
-    List<Category> categories = new ArrayList<>();
+    @ManyToMany(mappedBy = "items")
+//    @JoinColumn(name="CATEGORY_ID")
+    private List<Category> categories = new ArrayList<>();
 
 
 

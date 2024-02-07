@@ -15,11 +15,11 @@ public class OrderItem {
     private Long id;
 
     @JoinColumn(name="ORDER_ID")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
 
     @JoinColumn(name = "ITEM_ID")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Item item;
 
     private int orderPrice;
