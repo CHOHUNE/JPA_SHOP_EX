@@ -12,7 +12,5 @@ public class HelloController {
     public String Hello(Model model) {
         model.addAttribute("data", "hello!!!");
         return "hello";
-
-
     }
 }
