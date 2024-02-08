@@ -64,7 +64,7 @@ public class Order {
         order.setMember(member);
         order.setDelivery(delivery);
 
-        for (OrderItem orderItem : order.orderItems) {
+        for (OrderItem orderItem : orderItems) {
 
             order.addOrderItem(orderItem);
 

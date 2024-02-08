@@ -1,11 +1,8 @@
 package jpabook.japshop.Service;
 
 
-import jpabook.japshop.domian.Delivery;
+import jpabook.japshop.domian.*;
 import jpabook.japshop.domian.Item.Item;
-import jpabook.japshop.domian.Member;
-import jpabook.japshop.domian.Order;
-import jpabook.japshop.domian.OrderItem;
 import jpabook.japshop.repository.ItemRepository;
 import jpabook.japshop.repository.MemberRepository;
 import jpabook.japshop.repository.OrderRepository;
@@ -31,6 +28,8 @@ public class OrderService {
 
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
+        delivery.setDeliveryStatus(DeliveryStatus.READY);
+
 
 //        주문 상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
