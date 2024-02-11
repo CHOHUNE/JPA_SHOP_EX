@@ -5,9 +5,12 @@ import jpabook.japshop.Service.ItemService;
 import jpabook.japshop.domian.Item.Book;
 import jpabook.japshop.domian.Item.Item;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -54,7 +57,36 @@ public class ItemController {
         return "items/itemList";
     }
 
+    @GetMapping("items/{itemId}/edit")
+    public String updateItemForm(@PathVariable("itemId") Long itemId, Model model) {
+        Book item = (Book) itemService.findOne(itemId);
 
+        BookForm bookForm = new BookForm();
+        bookForm.setId(item.getId());
+        bookForm.setPrice(bookForm.getPrice());
+        bookForm.setStockQuantity(bookForm.getStockQuantity());
+        bookForm.setAuthor(item.getAuthor());
+        bookForm.setIsbn(item.getIsbn());
+
+        model.addAttribute("form", bookForm);
+        return "items/updateItemForm";
+    }
+
+    @PostMapping("items/{itemdId}/edit")
+    public String updateItem(@PathVariable String itemdId,@ModelAttribute("form") BookForm form , Model model) {
+
+        Book book = new Book();
+        book.setIsbn(form.getIsbn());
+        book.setId(form.getId());
+        book.setPrice(form.getPrice());
+        book.setAuthor(form.getAuthor());
+        book.setStockQuantity(form.getStockQuantity());
+        book.setName(form.getName());
+
+        itemService.saveItem(book);
+
+        return "redirect:/items";
 
     }
+}
 
