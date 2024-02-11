@@ -5,12 +5,15 @@ import jakarta.validation.Valid;
 import jpabook.japshop.Service.MemberService;
 import jpabook.japshop.domian.Address;
 import jpabook.japshop.domian.Member;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -54,4 +57,15 @@ public class MemberController {
 
         return "redirect:/"; //홈에 보내기
     }
+
+    @GetMapping("/members")
+    public String list(Model model) {
+        model.addAttribute("members", memberService.findMembers());
+        //변수 인라인  - > opt cmd m
+        return "members/memberList";
+
+//        JPQL 멤버리스트 가져오기 -> model 에 담아서 전달
+
+    }
+
 }
