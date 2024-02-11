@@ -3,11 +3,14 @@ package jpabook.japshop.Controller;
 
 import jpabook.japshop.Service.ItemService;
 import jpabook.japshop.domian.Item.Book;
+import jpabook.japshop.domian.Item.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,7 +22,7 @@ public class ItemController {
     public String createForm(Model model) {
         model.addAttribute("form", new BookForm());
 
-        return "items/createItemFrom";
+        return "items/createItemForm";
     }
 
     @PostMapping("/items/new")
@@ -27,7 +30,7 @@ public class ItemController {
         Book book = new Book();
         book.setName(form.getName());
         book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStcokQuantity());
+        book.setStockQuantity(form.getStockQuantity());
         book.setAuthor(form.getAuthor());
         book.setIsbn(form.getIsbn());
 
@@ -42,7 +45,13 @@ public class ItemController {
 
         itemService.saveItem(book);
         return "redirect:/";
+    }
 
+    @GetMapping("/items")
+    public String list(Model model) {
+        List<Item> items = itemService.findItems();
+        model.addAttribute("items", items);
+        return "items/itemList";
     }
 
 
