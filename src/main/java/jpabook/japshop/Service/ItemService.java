@@ -1,6 +1,7 @@
 package jpabook.japshop.Service;
 
 
+import jpabook.japshop.domian.Item.Book;
 import jpabook.japshop.domian.Item.Item;
 import jpabook.japshop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,21 @@ public class ItemService {
     @Transactional
     public void saveItem(Item item) {
         itemRepository.save(item);
+    }
+
+    @Transactional
+    public Item updateItem(Long itemId, int price, String name,int stockQuantity ){
+        Item findItem = itemRepository.findOne(itemId);
+        //id 를 기반으로 실제 영속 상태의 엔티티를 찾아옴
+        findItem.setPrice(price);
+        findItem.setName(name);
+        findItem.setStockQuantity(stockQuantity);
+
+        return findItem;
+
+        // itemRepository에 save를 호출한다거나 persist 할 필요 없다.
+        // Transactional이 commit 을 하게 되고 JPA에서
+
     }
 
     public List<Item> findItems() {
