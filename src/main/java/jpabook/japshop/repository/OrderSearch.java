@@ -1,9 +1,8 @@
 package jpabook.japshop.repository;
 
 
-import jpabook.japshop.domian.OrderStatus;
+import jpabook.japshop.domain.OrderStatus;
 import lombok.Data;
-import lombok.Getter;
 
 @Data
 public class OrderSearch {

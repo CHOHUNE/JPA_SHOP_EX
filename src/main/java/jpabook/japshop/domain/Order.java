@@ -1,12 +1,9 @@
-package jpabook.japshop.domian;
+package jpabook.japshop.domain;
 
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import org.aspectj.weaver.ast.Or;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +34,7 @@ public class Order {
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    private OrderStatus status;
 
     //    연관관계 편의 메서드
     public void setMember(Member member) {
@@ -69,7 +66,7 @@ public class Order {
             order.addOrderItem(orderItem);
 
         }
-        order.setOrderStatus(OrderStatus.ORDER);
+        order.setStatus(OrderStatus.ORDER);
         order.setOrderDate(LocalDateTime.now());
         return order;
 
@@ -81,7 +78,7 @@ public class Order {
             throw new IllegalStateException("이미 배송이 완료된 상품은 취소가 불가 합니다.");
 
         }
-        this.setOrderStatus(OrderStatus.CANCEL);
+        this.setStatus(OrderStatus.CANCEL);
         for (OrderItem orderItem : orderItems) {
             orderItem.cancel(); // Order 뿐만 아니라 여러개의 orderItem 에도 캔슬을 각각 해줘야 함
             // 취소된 아이템의 재고를 올려주는 메서드

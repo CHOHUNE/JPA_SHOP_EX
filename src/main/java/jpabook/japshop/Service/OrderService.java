@@ -1,11 +1,12 @@
 package jpabook.japshop.Service;
 
 
-import jpabook.japshop.domian.*;
-import jpabook.japshop.domian.Item.Item;
+import jpabook.japshop.domain.*;
+import jpabook.japshop.domain.Item.Item;
 import jpabook.japshop.repository.ItemRepository;
 import jpabook.japshop.repository.MemberRepository;
 import jpabook.japshop.repository.OrderRepository;
+import jpabook.japshop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,9 +62,9 @@ public class OrderService {
 //      엔티티만 이렇게 변경 하면 JPA가 더티체킹으로 변경된 내역들의 쿼리를 알아서 DB에 적용시켜주는 쿼리를 날려준다.
     }
 
-//    public List<Order> findOrders(OrderSearch orderSearch) {
-//        return orderRepository.findAll(orderSearch);
-//    }
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByCriteria(orderSearch);
+    }
 
 }
 

@@ -1,12 +1,10 @@
 package jpabook.japshop.repository;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.PersistenceUnit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import jpabook.japshop.domian.Member;
+import jpabook.japshop.domain.Member;
 import java.util.List;
 
 @Repository //스프링 빈에 등록하는 어노테이션

@@ -1,10 +1,8 @@
-package jpabook.japshop.domian;
+package jpabook.japshop.domain;
 
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import org.springframework.context.annotation.EnableMBeanExport;
 
 import java.util.ArrayList;
 import java.util.List;

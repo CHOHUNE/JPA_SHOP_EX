@@ -3,12 +3,12 @@ package jpabook.japshop.service;
 
 import jakarta.persistence.EntityManager;
 import jpabook.japshop.Service.OrderService;
-import jpabook.japshop.domian.Address;
-import jpabook.japshop.domian.Item.Book;
-import jpabook.japshop.domian.Member;
-import jpabook.japshop.domian.Order;
-import jpabook.japshop.domian.OrderStatus;
-import jpabook.japshop.domian.exception.NotEnoughStockException;
+import jpabook.japshop.domain.Address;
+import jpabook.japshop.domain.Item.Book;
+import jpabook.japshop.domain.Member;
+import jpabook.japshop.domain.Order;
+import jpabook.japshop.domain.OrderStatus;
+import jpabook.japshop.domain.exception.NotEnoughStockException;
 import jpabook.japshop.repository.OrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +46,7 @@ public class OrderServiceTest {
 
         Order getOrder = orderRepository.findOne(orderId);
 
-        assertEquals("상품 주문시 상태는 ORDER", OrderStatus.ORDER, getOrder.getOrderStatus());
+        assertEquals("상품 주문시 상태는 ORDER", OrderStatus.ORDER, getOrder.getStatus());
         assertEquals("주문한 상품 종류 수가 정확해야 한다.", 1, getOrder.getOrderItems().size());
         assertEquals("주문 가격은 가격 * 수량이다.", 10000 * orderCount, getOrder.getTotalPrice());
         assertEquals("주문 수량만큼 재고가 줄어야 한다.", 8, book.getStockQuantity());
@@ -81,7 +81,7 @@ public class OrderServiceTest {
 
         Order one = orderRepository.findOne(order);
 
-        assertEquals("주문취소시 상태는 캔슬이 되어야함",OrderStatus.CANCEL,one.getOrderStatus());
+        assertEquals("주문취소시 상태는 캔슬이 되어야함",OrderStatus.CANCEL,one.getStatus());
         assertEquals("주문이 취소된 상품은 그만큼 재고가 증가 해야함",10,book.getStockQuantity());
 
 

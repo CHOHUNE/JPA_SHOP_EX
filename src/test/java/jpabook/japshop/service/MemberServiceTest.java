@@ -3,7 +3,7 @@ package jpabook.japshop.service;
 
 import jakarta.persistence.EntityManager;
 import jpabook.japshop.Service.MemberService;
-import jpabook.japshop.domian.Member;
+import jpabook.japshop.domain.Member;
 import jpabook.japshop.repository.MemberRepository;
 import org.junit.Assert;
 import org.junit.Test;

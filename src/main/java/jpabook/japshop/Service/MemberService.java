@@ -2,9 +2,8 @@ package jpabook.japshop.Service;
 
 import jpabook.japshop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import jpabook.japshop.domian.Member;
+import jpabook.japshop.domain.Member;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

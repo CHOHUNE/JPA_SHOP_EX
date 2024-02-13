@@ -1,4 +1,4 @@
-package jpabook.japshop.domian.Item;
+package jpabook.japshop.domain.Item;
 
 
 import jakarta.persistence.DiscriminatorValue;

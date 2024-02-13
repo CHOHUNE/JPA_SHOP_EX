@@ -1,4 +1,4 @@
-package jpabook.japshop.domian;
+package jpabook.japshop.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;

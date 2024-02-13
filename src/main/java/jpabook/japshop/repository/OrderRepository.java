@@ -5,7 +5,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-import jpabook.japshop.domian.Order;
+import jpabook.japshop.domain.Order;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;

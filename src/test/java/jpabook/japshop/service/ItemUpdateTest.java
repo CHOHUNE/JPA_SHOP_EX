@@ -2,7 +2,7 @@ package jpabook.japshop.service;
 
 
 import jakarta.persistence.EntityManager;
-import jpabook.japshop.domian.Item.Book;
+import jpabook.japshop.domain.Item.Book;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

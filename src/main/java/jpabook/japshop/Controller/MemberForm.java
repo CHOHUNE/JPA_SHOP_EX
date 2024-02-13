@@ -2,7 +2,6 @@ package jpabook.japshop.Controller;
 
 
 import jakarta.validation.constraints.NotEmpty;
-import jpabook.japshop.domian.Address;
 import lombok.Data;
 
 @Data

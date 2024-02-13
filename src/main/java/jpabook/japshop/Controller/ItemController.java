@@ -2,10 +2,9 @@ package jpabook.japshop.Controller;
 
 
 import jpabook.japshop.Service.ItemService;
-import jpabook.japshop.domian.Item.Book;
-import jpabook.japshop.domian.Item.Item;
+import jpabook.japshop.domain.Item.Book;
+import jpabook.japshop.domain.Item.Item;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
