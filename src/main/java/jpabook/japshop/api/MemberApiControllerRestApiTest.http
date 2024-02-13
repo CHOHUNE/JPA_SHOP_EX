@@ -1,0 +1,16 @@
+###회원 가입 API
+POST http://localhost:8080/api/v1/members
+Content-Type: application/json
+
+{
+"name" : "테스트랑께"
+}
+
+
+###회원 가입 API2
+POST http://localhost:8080/api/v2/members
+Content-Type: application/json
+
+{
+"name" : "테스트랑께"
+}
