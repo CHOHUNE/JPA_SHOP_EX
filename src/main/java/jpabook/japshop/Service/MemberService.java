@@ -48,4 +48,15 @@ public class MemberService {
     public Member findMember(Long id) {
         return memberRepository.findOne(id);
     }
-}
+
+
+    @Transactional
+    public void update(Long id, String name) {
+
+        Member member = memberRepository.findOne(id);
+        member.setName(name);
+        // merge가 아닌 변경 감지
+
+    }
+    }
+

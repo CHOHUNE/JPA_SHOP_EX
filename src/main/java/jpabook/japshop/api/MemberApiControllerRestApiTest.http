@@ -14,3 +14,14 @@ Content-Type: application/json
 {
 "name" : "테스트랑께"
 }
+
+
+###회원 수정 API
+PUT http://localhost:8080/api/v2/members/1
+Content-Type: application/json
+
+{
+"name" : "수정이랑꼐랑까랑"
+}
+
+
